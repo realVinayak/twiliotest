@@ -8,13 +8,13 @@ const PORT = process.env.PORT || 5000;
 app.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   
-  const response = new VoiceResponse();
-  response.record({
+  const response_1 = new VoiceResponse();
+  response_1.record({
       timeout: 10,
       transcribe: true
   });
   
-  console.log(response.toString());
+  console.log(response_1.toString());
 });
 
 // Create an HTTP server and listen for requests on port 3000
