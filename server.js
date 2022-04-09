@@ -9,15 +9,16 @@ const PORT = process.env.PORT || 5000;
 app.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   
-  const response1 = new VoiceResponse();
-  response1.say({ voice: 'alice' }, 'hello world!');
+  const tml = new VoiceResponse();
+  tml.say({ voice: 'alice' }, 'hello world!');
+  
   /**response1.record({
     action: '/name_record',
     finishOnKey: 1,
     timeout: 10,
   });**/
-  
- // console.log(response1.toString());
+  response.type('text/xml');
+  response.send(tml.toString());
 });
 app.post('/name_record', (req, res)=>{
   console.log(req);
