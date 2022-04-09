@@ -11,13 +11,13 @@ app.post('/', (request, response) => {
   
   const response1 = new VoiceResponse();
   response1.say({ voice: 'alice' }, 'hello world!');
-  response1.record({
+  /**response1.record({
     action: '/name_record',
     finishOnKey: 1,
     timeout: 10,
-  });
+  });**/
   
-  console.log(response1.toString());
+ // console.log(response1.toString());
 });
 app.post('/name_record', (req, res)=>{
   console.log(req);
