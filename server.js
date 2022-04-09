@@ -21,7 +21,7 @@ app.post('/', (request, response) => {
   response.send(tml.toString());
 });
 app.post('/name_record', (req, res)=>{
-  console.log(req);
+  console.log(req.RecordingUrl);
 })
 
 // Create an HTTP server and listen for requests on port 3000
