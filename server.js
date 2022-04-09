@@ -18,7 +18,7 @@ app.post('/voice', (request, response) => {
   
   console.log(response1.toString());
 });
-app.get('/name_record', (req, res)=>{
+app.post('/name_record', (req, res)=>{
   console.log(req);
 })
 
