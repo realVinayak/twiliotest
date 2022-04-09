@@ -13,7 +13,8 @@ app.post('/name', (request, response) => {
     action: '/hangup',
     finishOnKey: 1,
     timeout: 10,
-    recordingStatusCallback: '/name_record'
+    recordingStatusCallback: '/name_record',
+    recordingStatusCallbackMethod: 'GET'
   });
   response.type('text/xml');
   response.send(tml.toString());
