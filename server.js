@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 // Create a route that will handle Twilio webhook requests, sent as an
 // HTTP POST to /voice in our application
-app.post('/voice', (request, response) => {
+app.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   
   const response1 = new VoiceResponse();
