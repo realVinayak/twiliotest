@@ -38,7 +38,7 @@ app.post('/hangup', (request, response) => {
 });**/
 app.post('/name_record', (req, res)=>{
   console.log("Got name record now");
-  console.log(req.body);
+  console.log(req.body.AccountSid);
 })
 app.post('/age_record', (req, res)=>{
   console.log(req);
