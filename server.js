@@ -12,11 +12,11 @@ app.post('/', (request, response) => {
   const tml = new VoiceResponse();
   tml.say({ voice: 'alice' }, 'hello world!');
   
-  /**response1.record({
+  tml.record({
     action: '/name_record',
     finishOnKey: 1,
     timeout: 10,
-  });**/
+  });
   response.type('text/xml');
   response.send(tml.toString());
 });
