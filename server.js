@@ -10,6 +10,7 @@ app.post('/', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   
   const response1 = new VoiceResponse();
+  response1.say({ voice: 'alice' }, 'hello world!');
   response1.record({
     action: '/name_record',
     finishOnKey: 1,
