@@ -10,7 +10,7 @@ app.post('/name', (request, response) => {
   const tml = new VoiceResponse();
   tml.say({ voice: 'alice' }, 'What is your name?');
   tml.record({
-    action: '/age',
+    action: '/hangup',
     finishOnKey: 1,
     timeout: 10,
     recordingStatusCallback: '/name_record'
@@ -18,7 +18,13 @@ app.post('/name', (request, response) => {
   response.type('text/xml');
   response.send(tml.toString());
 });
-app.post('/age', (request, response) => {
+app.post('/hangup', (request, response) => {
+  const tml = new VoiceResponse();
+  tml.hangup();
+  response.type('text/xml');
+  response.send(tml.toString());
+});
+/**app.post('/age', (request, response) => {
   const tml = new VoiceResponse();
   tml.say({ voice: 'alice' }, 'What is your age');
   tml.record({
@@ -29,9 +35,10 @@ app.post('/age', (request, response) => {
   });
   response.type('text/xml');
   response.send(tml.toString());
-});
+});**/
 app.post('/name_record', (req, res)=>{
-  console.log(req);
+  console.log("Got name record now");
+  console.log(req.AccountSid);
 })
 app.post('/age_record', (req, res)=>{
   console.log(req);
