@@ -54,9 +54,9 @@ const app2 = express();
 
 
 var server = http.createServer(app2)
-server.listen(port)
+server.listen(80)
 
-console.log("http server listening on %d", port)
+console.log("http server listening on %d", 80)
 console.log("websocket server created")
 
 wss.on("connection", function(ws) {
