@@ -1,24 +1,7 @@
 const express = require('express');
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 const mongoose = require('mongoose');
-const zmq = require('zeromq');
-
-async function runClient() {
-  console.log('Connecting to hello world server…');
-
-  //  Socket to talk to server
-  const sock = new zmq.Request();
-  sock.connect('tcp://localhost:5555');
-
-  for (let i = 0; i < 10; i++) {
-    console.log('Sending Hello ', i);
-    await sock.send('Hello');
-    const [result] = await sock.receive();
-    console.log('Received ', result.toString(), i);
-  }
-}
-
-runClient();
+const axios = require('axios');
 
 let obj_employer={
     name:"",
@@ -147,9 +130,9 @@ app.post('/end_emplyr', (request, response)=>{
     const tml = new VoiceResponse();
     tml.say("We will call you when we find appropriate matches")
     response.type('text/xml');
-    response.send(tml.toString());
+    response.send(tml.toString()); 
     tml.hangup()
-    console.log(obj_employer)
+    
 })
 app.get('/name_emplyr', (req, res)=>{
     obj_employer.name = req.query.RecordingUrl;
@@ -162,6 +145,7 @@ app.get('/location_job_record', (req, res)=>{
 })
 app.get('/job_descrip_record', (req, res)=>{
     obj_employer.job_descrip = req.query.RecordingUrl;
+    axios.post('http://127.0.0.1:8000', obj_employer).then(function (resp){console.log(resp)})
 })
 
 app.post('/hangup', (request, response) => {
@@ -244,7 +228,9 @@ app.get('/lm_record', (req, res)=>{
 })
 app.get('/qual_record', (req, res)=>{
     obj_app.job_qual = req.query.RecordingUrl;
-    console.log("Main Object", obj_app)
+    axios.post('http://127.0.0.1:8000/', obj_app).then(function (response) {
+    console.log(response);
+    })
     const obj_app_1 = new links_({phone_number:obj_app.name, is_seeking:true, age:obj_app.age, current_loc:obj_app.location, loc_to_move:obj_app.will_move, quals:obj_app.job_qual})
     obj_app_1.save((err)=>{
         console.log(err)
