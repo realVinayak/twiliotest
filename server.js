@@ -1,7 +1,4 @@
 const express = require('express');
-const WebSocket = require('ws');
-const http = require("http")
-const wss = new WebSocket.Server("ws://34.133.218.58:80")
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 const mongoose = require('mongoose')
 let obj_employer={
@@ -10,7 +7,6 @@ let obj_employer={
     age_of_employee:"",
     job_loc:"",
     job_descrip:""
-    
 }
 let obj_app={
     name:"",
